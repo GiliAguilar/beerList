@@ -1,9 +1,6 @@
 
 <template>
-  <div class="flex w-full bg-amber-400">
-    <beers-listings/>
-    <div>test</div>
-  </div>
+  <beers-listings/>
 </template>
 
   <script setup>

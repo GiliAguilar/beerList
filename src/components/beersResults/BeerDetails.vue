@@ -1,19 +1,26 @@
 <template>
-    <section class="pb-5 pt-5">
-        <div class="grid grid-cols-2">
-            <div class="col-span-1 col-start-1">
+    <section class="pb-5 pt-5 px-10">
+        <div class="grid grid-cols-2 max-w-4xl">
+            <div class="col-span-1 col-start-1 bg-yellow-300 max-w-xs">
+                <ul>
+                    <li class="bg-yellow-100 ">
+                        <img :src="beer.image_url" class="h-auto w-20"/>
+                    </li>
+                </ul>
+                
                 <img :src="beer.img" class="h-auto w-40 object-fill"/>
             </div>
-            <div class="col-span-1 col-start-2">
+            <div class="col-span-1 col-start-2 max-w-lg bg-yellow-300">
                 <ul>
                     <li>
                         <h1 class="text-3xl">
-                            {{ beer.desc1 }}
+                            {{ beer.name }}
                         </h1>
                     </li>
-                    <li>{{ beer.desc2 }}</li>
-                    <li>{{ beer.desc3 }}</li>
-                    <li>{{ beer.desc4 }}</li>
+                    <li>{{ beer.tagline }}</li>
+                    <li>First brewed: {{ beer.first_brewed }}</li>
+                    <li>Brewers tips: {{ beer.brewers_tips }}</li>
+                    <li>Contributed by: {{ beer.contributed_by }}</li>
                 </ul>
             </div>
         </div>
@@ -21,12 +28,11 @@
 </template>
 
 <script setup>
-const beer = {
-    id: 1,
-    desc1: 'desc1',
-    desc2: 'desc2',
-    desc3: 'desc3',
-    desc4: 'desc4',
-    img: 'src/assets/logo.svg'
-}
+const props = defineProps({
+    beer: {
+        type: Object,
+        require: true,
+        default: null
+    }
+});
 </script>
