@@ -4,11 +4,9 @@
             <div class="col-span-1 col-start-1 bg-yellow-300 max-w-xs">
                 <ul>
                     <li class="bg-yellow-100 ">
-                        <img :src="beer.image_url" class="h-auto w-20"/>
+                        <beer-img :beerImgUrl="beer.image_url" viewSize="list"/>
                     </li>
                 </ul>
-                
-                <img :src="beer.img" class="h-auto w-40 object-fill"/>
             </div>
             <div class="col-span-1 col-start-2 max-w-lg bg-yellow-300">
                 <ul>
@@ -28,6 +26,8 @@
 </template>
 
 <script setup>
+import BeerImg from '@/components/beersResults/BeerImg.vue';
+
 const props = defineProps({
     beer: {
         type: Object,
