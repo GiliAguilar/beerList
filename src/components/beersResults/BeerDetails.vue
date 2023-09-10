@@ -1,23 +1,20 @@
 <template>
-    <section class="pb-5 pt-5 px-10">
-        <div class="grid grid-cols-2 max-w-4xl">
-            <div class="col-span-1 col-start-1 bg-yellow-300 max-w-xs">
-                <ul>
-                    <li class="bg-yellow-100 ">
-                        <beer-img :beerImgUrl="beer.image_url" viewSize="list"/>
-                    </li>
-                </ul>
+    <section class="flex px-10 py-5">
+        <div class="grid grid-cols-4 gap-10 max-w-3xl h-52">
+            <div class="col-span-1 col-start-1 w-[10rem]">
+                <span class="bg-yellow-100">
+                    <beer-img :beerImgUrl="beer.image_url" viewSize="list"/>
+                </span>
             </div>
-            <div class="col-span-1 col-start-2 max-w-lg bg-yellow-300">
-                <ul>
+            <div class="col-span-3 col-start-2 max-w-lg">
+                <ul class="flex-col px-2 py-2 text-center">
                     <li>
-                        <h1 class="text-3xl">
+                        <h1 class="text-3xl font-extrabold pb-2">
                             {{ beer.name }}
                         </h1>
                     </li>
-                    <li>{{ beer.tagline }}</li>
+                    <li class="font-bold">{{ beer.tagline }}</li>
                     <li>First brewed: {{ beer.first_brewed }}</li>
-                    <li>Brewers tips: {{ beer.brewers_tips }}</li>
                     <li>Contributed by: {{ beer.contributed_by }}</li>
                 </ul>
             </div>

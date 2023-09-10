@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img :src="beerImgUrl" :class="['w-auto', actionClasses]"/>
+        <img :src="beerImgUrl" :class="[ actionClasses]"/>
     </div>
 </template>
 
@@ -28,14 +28,14 @@ const actionClasses = computed(()=> ({[imgClass]: true}));
 
 <style scoped>
 .default {
-    height: 190px;
+    height: 208px;
 }
 
 .list {
-    height: 190px;
+    height: 208px;
 }
 
 .overview {
-    height: 350px;
+    height: 384px;
 }
 </style>

@@ -2,20 +2,18 @@ import {ref, computed} from 'vue';
 import { defineStore } from 'pinia';
 import getBeers from '@/api/getBeers';
 
+const fetchLimit = import.meta.env.VITE_APP_API_FETCH_LIMIT;
+
 export const useBeersStore = defineStore('beers', () => {
     const beers = ref([]);
-    const page = ref(1);
-    const limit = ref(10);
-    const hasMore = ref(false);
-    const isLoading = ref(false);
+    const page = ref(0);
 
-    const FETCH_BEERS =  async () => beers.value = await getBeers(page.value, limit.value);
+    const FETCH_BEERS =  async () => {
+        beers.value = await getBeers(page.value)
+    };
     const FETCH_MORE_BEERS =  async () => {
-        isLoading.value = true;
-        const response =  await getBeers(page.value, limit.value);
-        hasMore.value = Object.keys(response).length === limit.value;
-        isLoading.value = false;
-        return response;
+        const response =  await getBeers(page.value);
+        return response
     };
 
     const FILTERED_BEERS = computed(()=>{
@@ -25,15 +23,12 @@ export const useBeersStore = defineStore('beers', () => {
     const MORE_BEERS = async () => {
         page.value++;
         const moreBeers = await FETCH_MORE_BEERS();
-        beers.value = [...beers.value, ...moreBeers];
+        beers.value.push( ...moreBeers);
     };
 
     return {
         beers,
-        // page,
-        // limit,
-        hasMore,
-        isLoading, 
+        page,
         FETCH_BEERS, 
         FILTERED_BEERS,
         MORE_BEERS

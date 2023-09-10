@@ -1,8 +1,9 @@
 <template>
-    <header class="w-full text-sm h-12">
-        <div class="fixed h-12 w-full bg-yellow-100">
-            <div class="h-full text-center ">
-               <router-link :to="{ name: 'home'}" class="text-3xl font-black bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">Beer bible!</router-link> 
+    <header class="fixed w-full text-sm h-20 bg-yellow-200 border-solid border-y-2 border-yellow-600">
+        <div class="flex flex-row h-full w-full justify-center">
+            <img src="src/assets/beerBg.svg" class="h-14 pt-4"/>
+            <div class="h-full text-center pt-3">
+               <router-link :to="{ name: 'home'}" class="text-5xl font-black bg-gradient-to-r from-yellow-700 to-yellow-600 bg-clip-text text-transparent">Beer bible!</router-link> 
             </div>
         </div>
     </header>

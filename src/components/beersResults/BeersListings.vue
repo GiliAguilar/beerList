@@ -1,64 +1,33 @@
 <template>
-    <main class="flex-auto">
-        <ol>
-            <beer-details v-for="beer in beersStore.beers" :key="beer.id" :beer="beer" class="max-w-3xl"/>
-        </ol>
+    <main class="flex h-screen justify-center">
+        <div v-bind="containerProps" class="heightScreen p-2 w-full mt-20">
+            <div v-bind="wrapperProps" class="flex flex-col max-w-3xl mx-auto">
+                <div v-for="{ index, data } in list" :key="index" class="flex h-auto my-2 bg-orange-300 rounded-[50px] border-slate-400">
+                    <h2 class="text-xl font-black py-[104px] pl-8 ">{{ index + 1}}</h2>
+                    <beer-details :beer="data"/>
+                </div>
+            </div>
+        </div>
     </main>
-    <div class="app__container">
-        <div class="spinner" v-if="beersStore.isLoading"></div>
-        <a href="" class="click__button app__more" v-if="beersStore.hasMore && !(beersStore.isLoading)" @click.prevent="beersStore.MORE_BEERS">See more</a>
-    </div>
 </template>
 
 <script setup>
 import { useBeersStore } from '@/stores/beers';
-import {onBeforeMount, onMounted, onUnmounted, computed} from 'vue';
+import { useVirtualList, useInfiniteScroll } from '@vueuse/core';
 import BeerDetails from '@/components/beersResults/BeerDetails.vue';
 
 const beersStore = useBeersStore();
-
-// const FILTERED_BEERS = computed(()=>beersStore.FILTERED_BEERS);
-// const displayBeers = computed(()=> FILTERED_BEERS.value);
-
-function scrolling({target}) {
-  const { scrollingElement } = target;
-  console.log(scrollingElement);
-
-    const button = document.querySelector(".click__button");
-    button?.click();
-}
-
-onBeforeMount(()=>{
-    beersStore.FETCH_BEERS();
+ 
+const { list, containerProps, wrapperProps } = useVirtualList(beersStore.beers, {
+    itemHeight: 208
 });
-onMounted(() => {
-    window.addEventListener('scroll', scrolling);
-})
-onUnmounted(() => {
-    window.removeEventListener('scroll', scrolling);
-})
-
+useInfiniteScroll(containerProps.ref, async () => {
+    await beersStore.MORE_BEERS();
+}, { distance: 10 });
 </script>
 
-<style scoped>
-.app__container {
-    min-height: 25px;
-    margin: 15px auto;
-    text-align: center;
-    position: relative;
-}
-
-
-.app__more {
-    font-size: 1.2rem;
-    text-decoration: none;
-    cursor: pointer;
-}
-.app__more:hover {
-    text-decoration: underline;
-}
-.app__more,
-.app__more:active {
-    color: rgb(175, 162, 35)
+<style>
+.heightScreen {
+    height: calc(100vh - 80px);
 }
 </style>
