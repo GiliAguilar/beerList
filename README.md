@@ -39,3 +39,5 @@ npm run test:unit
 ```sh
 npm run lint
 ```
+
+### NOTES: In this version, to access the beer information page, you must manually enter /about/1 at the end of the url, router-link not yet implemented, will include in the next push
