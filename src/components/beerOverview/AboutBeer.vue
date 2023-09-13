@@ -1,10 +1,10 @@
 <template>
-    <div class="flex h-screen">
+    <div class="flex h-screen bg-gradient-to-r from-yellow-100 to-yellow-200">
         <div class="pt-36">
             <h2 class="flex justify-center text-4xl">Title {{ data.name }}</h2>
             <div class="grid grid-cols-7 gap-5 w-auto">
                 <div class="col-span-1 col-start-2">
-                    <img v-if="data.image_url" :src="data.image_url" class="drop-shadow-xl"/>
+                    <img v-if="data.image_url" :src="data.image_url" class="drop-shadow-xl max-h-[500px]"/>
                     <img v-else src='../../../src/assets/logo.svg' class="drop-shadow-xl"/>
                 </div>
                 <div class="col-span-2 col-start-3 h-auto px-5 py-5">
@@ -83,7 +83,7 @@ const beersStore = useBeersStore();
 const data = computed(() => beersStore.BEER);
 
 onBeforeMount(async () => {
-    await beersStore.FETCH_BEER(1);
+    await beersStore.FETCH_BEER(15);
 });
 
 
