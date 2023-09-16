@@ -1,5 +1,5 @@
 <template>
-    <div class="flex h-screen bg-gradient-to-r from-yellow-100 to-yellow-200">
+    <div class="flex h-full bg-gradient-to-r from-yellow-100 to-yellow-200">
         <div class="pt-36">
             <h2 class="flex justify-center text-4xl">Title {{ data.name }}</h2>
             <div class="grid grid-cols-7 gap-5 w-auto">
@@ -62,7 +62,7 @@
                     </ol>
                 </div>
             </div>
-            <div class="px-32">
+            <div class="px-32 md:bg-slate-500">
                 <div class="text-m font-bold mt-14">
                     Brewers tips: {{ data.brewers_tips }}
                 </div>
@@ -77,14 +77,15 @@
 <script setup>
 import {onBeforeMount, computed} from 'vue';
 import {useBeersStore} from '@/stores/beers';
+import { useRoute } from 'vue-router';
 
+const route = useRoute();
 
 const beersStore = useBeersStore();
 const data = computed(() => beersStore.BEER);
+const beerId = computed(() => route.params.id);
 
 onBeforeMount(async () => {
-    await beersStore.FETCH_BEER(15);
+    await beersStore.FETCH_BEER(beerId.value);
 });
-
-
 </script>

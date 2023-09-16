@@ -1,7 +1,5 @@
 # beerslist
 
-This template should help get you started developing with Vue 3 in Vite.
-
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
@@ -40,4 +38,11 @@ npm run test:unit
 npm run lint
 ```
 
-### NOTES: In this version, to access the beer information page, you must manually enter /about/1 at the end of the url, router-link not yet implemented, will include in the next push
+### FAQs
+
+---
+
+1. **Where can I change the API Url? and its request limits?**
+   _you can change both in .env.development .env.production and .env.test; this will affect all components of the app_
+2. **Can I add more information in beer overview?**
+   _yes, you can add more information, in the component AboutBeer.vue you can add as more information as you want using the prefixed "data."_

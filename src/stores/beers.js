@@ -13,16 +13,9 @@ export const useBeersStore = defineStore('beers', () => {
         const response = await getBeer(id);
         beer.value = response[0];
     };
-    const FETCH_BEERS =  async () => {
-        beers.value = await getBeers(page.value)
-    };
-    const FETCH_MORE_BEERS =  async () => {
-        const response =  await getBeers(page.value);
-        return response
-    };
     const MORE_BEERS = async () => {
         page.value++;
-        const moreBeers = await FETCH_MORE_BEERS();
+        const moreBeers = await getBeers(page.value);
         beers.value.push( ...moreBeers);
     };
 
@@ -34,7 +27,6 @@ export const useBeersStore = defineStore('beers', () => {
         beers,
         page,
         FETCH_BEER,
-        FETCH_BEERS, 
         MORE_BEERS,
         BEER,
         FILTERED_BEERS,
