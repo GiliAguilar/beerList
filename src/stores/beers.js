@@ -19,7 +19,7 @@ export const useBeersStore = defineStore('beers', () => {
         beers.value.push( ...moreBeers);
     };
 
-    const BEER = computed(() => beer.value);
+    // const BEER = computed(() => beer.value);
     const FILTERED_BEERS = computed(() => beers.value);
 
     return {
@@ -28,7 +28,7 @@ export const useBeersStore = defineStore('beers', () => {
         page,
         FETCH_BEER,
         MORE_BEERS,
-        BEER,
+        // BEER,
         FILTERED_BEERS,
     };
 });

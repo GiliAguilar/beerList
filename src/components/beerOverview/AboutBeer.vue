@@ -62,7 +62,7 @@
                     </ol>
                 </div>
             </div>
-            <div class="px-32 md:bg-slate-500">
+            <div class="px-5 xl:px-32">
                 <div class="text-m font-bold mt-14">
                     Brewers tips: {{ data.brewers_tips }}
                 </div>
@@ -75,17 +75,21 @@
 </template>
 
 <script setup>
-import {onBeforeMount, computed} from 'vue';
+import {onBeforeMount, onUnmounted, computed} from 'vue';
 import {useBeersStore} from '@/stores/beers';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
 
 const beersStore = useBeersStore();
-const data = computed(() => beersStore.BEER);
-const beerId = computed(() => route.params.id);
+const data = computed(() => beersStore.beer);
+const beerId = route.params.id;
 
-onBeforeMount(async () => {
-    await beersStore.FETCH_BEER(beerId.value);
+onBeforeMount(() => {
+    beersStore.FETCH_BEER(beerId);
 });
+
+onUnmounted(() => {
+    beersStore.beer = Object;
+})
 </script>
