@@ -1,4 +1,5 @@
 <template>
+
     <div class="flex h-full bg-gradient-to-r from-yellow-100 to-yellow-200">
         <div class="pt-36">
             <h2 class="flex justify-center text-4xl">Title {{ data.name }}</h2>
@@ -84,6 +85,10 @@ const route = useRoute();
 const beersStore = useBeersStore();
 const data = computed(() => beersStore.beer);
 const beerId = route.params.id;
+
+
+
+
 
 onBeforeMount(() => {
     beersStore.FETCH_BEER(beerId);

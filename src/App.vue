@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gradient-to-r from-yellow-100 to-yellow-200">
+  <div>
     <main-nav/>
     <router-view />
   </div>
